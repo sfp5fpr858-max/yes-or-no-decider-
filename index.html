@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yes or No?</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  background:
+    radial-gradient(circle at top, #25204b, transparent 50%),
+    #0b0b16;
+}
+
+.container {
+  width: 90%;
+  max-width: 480px;
+  text-align: center;
+  padding: 35px 25px;
+  border: 1px solid #34304f;
+  border-radius: 25px;
+  background: rgba(25, 23, 48, 0.85);
+  box-shadow: 0 20px 70px #0008;
+}
+
+h1 {
+  font-size: 38px;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+h1 span { color: #a78bfa; }
+
+.subtitle {
+  color: #aaa6c5;
+  margin-bottom: 35px;
+}
+
+.question {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #464064;
+  background: #17152c;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 25px;
+}
+
+.question:focus { border-color: #a78bfa; }
+
+.result {
+  min-height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 65px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.yes { color: #4ade80; }
+.no { color: #fb7185; }
+
+.decide {
+  width: 100%;
+  padding: 19px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 25px #7c3aed55;
+  transition: 0.2s;
+}
+
+.decide:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+.decide:active { transform: scale(.97); }
+
+.reset {
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: transparent;
+  color: #aaa6c5;
+  border: 1px solid #464064;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 30px;
+  color: #77738f;
+  font-size: 12px;
+}
+
+.shake { animation: shake .4s; }
+
+@keyframes shake {
+  0%,100% { transform: scale(1); }
+  25% { transform: scale(1.12) rotate(-5deg); }
+  50% { transform: scale(.95) rotate(5deg); }
+  75% { transform: scale(1.08); }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>YES OR <span>NO?</span></h1>
+  <p class="subtitle">LET FATE DECIDE ✨</p>
+
+  <input
+    class="question"
+    id="question"
+    type="text"
+    placeholder="Ask yourself a question..."
+  >
+
+  <div class="result" id="result">🤔</div>
+
+  <button class="decide" onclick="decide()">
+    DECIDE FOR ME!
+  </button>
+
+  <br>
+
+  <button class="reset" onclick="reset()">↻ Try again</button>
+
+  <div class="footer">
+    MADE FOR THE BIG AND SMALL DECISIONS ✦
+  </div>
+</div>
+
+<script>
+function decide() {
+  const result = document.getElementById("result");
+
+  result.className = "result shake";
+  result.textContent = "🎲";
+
+  setTimeout(() => {
+    const answer = Math.random() < 0.5 ? "YES!" : "NO!";
+    result.textContent = answer;
+    result.className =
+      "result " + (answer === "YES!" ? "yes" : "no");
+  }, 450);
+}
+
+function reset() {
+  const result = document.getElementById("result");
+  result.textContent = "🤔";
+  result.className = "result";
+}
+</script>
+</body>
+</html>
